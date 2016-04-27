@@ -209,7 +209,12 @@ Object.defineProperty(Class, "$extend", {
         // Add static properties
         if (properties.__classvars__) {
             for (property in properties.__classvars__) {
-                __class__[property] = properties.__classvars__[property];
+                // forward any getters / setters
+                Object.defineProperty(
+                    __class__,
+                    property,
+                    Object.getOwnPropertyDescriptor(properties.__classvars__, property)
+                );
             }
         }
 
