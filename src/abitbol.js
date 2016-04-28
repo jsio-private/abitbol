@@ -224,6 +224,7 @@ Object.defineProperty(Class, "$extend", {
         });
         Object.defineProperty(__class__, "$extend", {
             enumerable: false,
+            configurable: true,
             value: Class.$extend
         });
         Object.defineProperty(__class__, "$map", {
