@@ -234,6 +234,14 @@ Object.defineProperty(Class, "$extend", {
             enumerable: false,
             value: _classMap
         });
+        // Add class.$name
+        if (properties.__name__) {
+            Object.defineProperty(__class__, '$name', {
+                enumerable: true,
+                configurable: false,
+                value: properties.__name__
+            });
+        }
 
         return __class__;
     }
