@@ -115,30 +115,32 @@ Object.defineProperty(Class, "$extend", {
                 computedPropertyName = undefined;
                 _classMap.methods[property] = {annotations: {}};
                 // Accessors / Mutators
-                if (property.indexOf("get") === 0) {
-                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
-                    if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
+                if (properties._generateProperties) {
+                    if (property.indexOf("get") === 0) {
+                        computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                        if (!_classMap.computedProperties[computedPropertyName]) {
+                            _classMap.computedProperties[computedPropertyName] = {annotations: {}};
+                        }
+                        _classMap.computedProperties[computedPropertyName].get = property;
+                    } else if (property.indexOf("set") === 0) {
+                        computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                        if (!_classMap.computedProperties[computedPropertyName]) {
+                            _classMap.computedProperties[computedPropertyName] = {annotations: {}};
+                        }
+                        _classMap.computedProperties[computedPropertyName].set = property;
+                    } else if (property.indexOf("has") === 0) {
+                        computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                        if (!_classMap.computedProperties[computedPropertyName]) {
+                            _classMap.computedProperties[computedPropertyName] = {annotations: {}};
+                        }
+                        _classMap.computedProperties[computedPropertyName].get = property;
+                    } else if (property.indexOf("is") === 0) {
+                        computedPropertyName = property.slice(2, 3).toLowerCase() + property.slice(3, property.length);
+                        if (!_classMap.computedProperties[computedPropertyName]) {
+                            _classMap.computedProperties[computedPropertyName] = {annotations: {}};
+                        }
+                        _classMap.computedProperties[computedPropertyName].get = property;
                     }
-                    _classMap.computedProperties[computedPropertyName].get = property;
-                } else if (property.indexOf("set") === 0) {
-                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
-                    if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
-                    }
-                    _classMap.computedProperties[computedPropertyName].set = property;
-                } else if (property.indexOf("has") === 0) {
-                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
-                    if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
-                    }
-                    _classMap.computedProperties[computedPropertyName].get = property;
-                } else if (property.indexOf("is") === 0) {
-                    computedPropertyName = property.slice(2, 3).toLowerCase() + property.slice(3, property.length);
-                    if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
-                    }
-                    _classMap.computedProperties[computedPropertyName].get = property;
                 }
                 // Annotations
                 annotations = extractAnnotations(properties[property]);
