@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                 },
                 options: {
                     browserifyOptions: {
-                        "standalone": "Class"
+                        "standalone": "abitbol"
                     }
                 }
             }
